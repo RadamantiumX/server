@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EpikkaController;
+use App\Http\Controllers\MsgController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +21,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('/enviar',[EpikkaController::class,'store']);
+Route::post('/send',[MsgController::class,'store']);
