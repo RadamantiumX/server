@@ -10,7 +10,9 @@ class MsgController extends Controller
 {
     public function index()
     {
+        $msg = Msg::all();
 
+        return $msg;
     }
 
     public function store(Request $request)
@@ -21,8 +23,10 @@ class MsgController extends Controller
 
     }
 
-    public function show()
+    public function show(Msg $msg)
     {
-
+        return response()->json([
+            'msg'=>$msg
+        ]);
     }
 }

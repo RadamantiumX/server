@@ -10,7 +10,9 @@ class EpikkaController extends Controller
 {
     public function index()
     {
+        $epikkamsg = Epikkamsg::all();
 
+        return $epikkamsg;
     }
 
     public function store(Request $request)
@@ -21,8 +23,10 @@ class EpikkaController extends Controller
 
     }
 
-    public function show()
+    public function show(Epikkamsg $epikkamsg)
     {
-
+        return response()->json([
+            'msg'=>$epikkamsg
+        ]);
     }
 }
