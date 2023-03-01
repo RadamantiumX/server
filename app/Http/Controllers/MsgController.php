@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\EpsiwebResource;
 use Illuminate\Http\Request;
 
 use App\Models\Msg;
@@ -10,9 +11,9 @@ class MsgController extends Controller
 {
     public function index()
     {
-        $msg = Msg::all();
-
-        return $msg;
+        return EpsiwebResource::collection(
+            Msg::query()->orderBy('id','desc')->paginate(10)
+        );
     }
 
     public function store(Request $request)

@@ -21,6 +21,7 @@ class AuthController extends Controller
         $user = User::create([
             'name'=> $data['name'],
             'email'=>$data['email'],
+            'role'=>'user',
             'password'=>bcrypt($data['password'])
         ]);
 
@@ -45,7 +46,7 @@ class AuthController extends Controller
         {
              return response([
                 'message'=>'Provided email address or password is incorrect'
-             ]);
+             ],422);
         }
         /** @var User $user */
         $user = Auth::user();//Obtenemos la info del usuario
