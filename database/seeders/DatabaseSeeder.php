@@ -15,11 +15,17 @@ class DatabaseSeeder extends Seeder
         //\App\Models\User::factory(50)->create();
 
          \App\Models\User::factory()->create([
-             'name' => 'adminEpsiweb',
-             'email' => 'admin@espiweb.com',
+             'name' => 'EduEpsiweb',
+             'email' => 'adminEdu@espiweb.com',
              'password'=>bcrypt('SeBa2010!'),
              'role'=>'admin'
          ]);
+         \App\Models\User::factory()->create([
+            'name' => 'JuanEpsiweb',
+            'email' => 'adminJuan@espiweb.com',
+            'password'=>bcrypt('JuAn2023!'),
+            'role'=>'admin'
+        ]);
          /*\App\Models\Msg::create([
             'nombre'=>'Ariel',
             'email'=>'ariel@mail.com',
