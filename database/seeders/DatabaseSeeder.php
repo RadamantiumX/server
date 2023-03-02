@@ -12,7 +12,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\User::factory(50)->create();
+        //\App\Models\User::factory(50)->create();
 
          \App\Models\User::factory()->create([
              'name' => 'adminEpsiweb',
@@ -20,5 +20,11 @@ class DatabaseSeeder extends Seeder
              'password'=>bcrypt('SeBa2010!'),
              'role'=>'admin'
          ]);
+         /*\App\Models\Msg::create([
+            'nombre'=>'Ariel',
+            'email'=>'ariel@mail.com',
+            'telefono'=>'1165363974',
+            'mensaje'=>'nada en especial'
+         ]);*/
     }
 }
