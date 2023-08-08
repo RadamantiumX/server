@@ -29,6 +29,8 @@ Route::middleware('auth:sanctum')->group(function(){
    Route::post('/logout',[AuthController::class,'logout']);
    Route::apiResource('/users',UserController::class);//Utilizamos todas las rutas para el manejo de USUARIOS
    Route::apiResource('/msg',MsgController::class);
+   //Traemos los datos de Eppika
+   Route::apiResource('/epikkamsg',EpikkaController::class); 
 });
 
 //Autenticacion de usuarios
@@ -45,5 +47,4 @@ Route::post('/send',[MsgController::class,'store']);
 //Traemos los datos de EpsiWeb
 //Route::get('/msg',[MsgController::class,'index']);
 
-//Traemos los datos de Eppika
-Route::get('/epikkamsg',[EpikkaController::class,'index']);
+

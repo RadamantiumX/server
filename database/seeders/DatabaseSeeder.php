@@ -15,22 +15,13 @@ class DatabaseSeeder extends Seeder
         //\App\Models\User::factory(50)->create();
 
          \App\Models\User::factory()->create([
-             'name' => 'EduEpsiweb',
-             'email' => 'adminEdu@epsiweb.com',
-             'password'=>bcrypt('SeBa2010!'),
+             'name' => 'epikkaAdmin',
+             'email' => 'admin@epikka.com',
+             'password'=>bcrypt('kj78la!0a'),
              'role'=>'admin'
          ]);
-         \App\Models\User::factory()->create([
-            'name' => 'JuanEpsiweb',
-            'email' => 'adminJuan@epsiweb.com',
-            'password'=>bcrypt('JuAn2023!'),
-            'role'=>'admin'
-        ]);
-         /*\App\Models\Msg::create([
-            'nombre'=>'Ariel',
-            'email'=>'ariel@mail.com',
-            'telefono'=>'1165363974',
-            'mensaje'=>'nada en especial'
-         ]);*/
+
+         
+         
     }
 }

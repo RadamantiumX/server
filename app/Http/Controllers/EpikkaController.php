@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\EpikkaResource;
 use Illuminate\Http\Request;
 
 use App\Models\Epikkamsg;
@@ -10,9 +11,16 @@ class EpikkaController extends Controller
 {
     public function index()
     {
-        $epikkamsg = Epikkamsg::all();
+        $perPage = request('per_page',5);
+        $search = request('search','');
+        $sortField = request('sort_field','created_at');
+        $sortDirection = request('sort_direction','desc');
 
-        return $epikkamsg;
+        $query = Epikkamsg::query()
+          ->orderBy($sortField,$sortDirection)
+          ->paginate($perPage);
+
+       return EpikkaResource::collection($query);  
     }
 
     public function store(Request $request)
@@ -28,5 +36,10 @@ class EpikkaController extends Controller
         return response()->json([
             'msg'=>$epikkamsg
         ]);
+    }
+    public function destroy(Epikkamsg $epikkamsg)
+    {
+        $epikkamsg->delete();
+        return response()->noContent();
     }
 }
