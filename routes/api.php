@@ -38,7 +38,7 @@ Route::post('/signup',[AuthController::class,'signup']);
 Route::post('/login',[AuthController::class,'login']);
 
 
-//Insertamos un registro en Eppika
+//Insertamos un registro en Eppika solo del sitio web (sin autenticacion)
 Route::post('/enviar',[EpikkaController::class,'storeEpikka']);
 
 //Insertamos un registro en Epsiweb
