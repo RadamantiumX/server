@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EpikkamsgRequest;
 use App\Http\Resources\EpikkaResource;
 use Illuminate\Http\Request;
 
 use App\Models\Epikkamsg;
+use Illuminate\Support\Facades\Http;
 
 class EpikkaController extends Controller
 {
@@ -23,9 +25,32 @@ class EpikkaController extends Controller
        return EpikkaResource::collection($query);  
     }
 
-    public function store(Request $request)
+    public function storeEpikka(Request $request)
     {
-        $epikkamsg = Epikkamsg::create($request->all());
+
+        $data = $request->validate([
+            'nombre'=>'required|max:30',
+            'email'=>'required|email',
+            'telefono'=>'required|max:30',
+            'mensaje'=>'required|max:300'
+        ]);
+
+        $response = Http::asForm()->post('https://www.google.com/recaptcha/api/siteverify',[
+            'secret'=>'6LdHto8nAAAAAHetFPez69KSzv0UBWkcF9t75jJC',
+            'response'=>$request->input('g-recaptcha-response')
+        ])->object();
+
+        /*if($response->success && $response->score >= 0.7){
+            return "Usuario real";
+        }else{
+            return "Es un bot";
+        }*/
+       
+
+        
+        
+        
+        $epikkamsg = Epikkamsg::create($data);
 
         return response()->json(['message'=>'Mensaje enviado.. Muchas Gracias!']);
 

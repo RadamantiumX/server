@@ -39,7 +39,7 @@ Route::post('/login',[AuthController::class,'login']);
 
 
 //Insertamos un registro en Eppika
-Route::post('/enviar',[EpikkaController::class,'store']);
+Route::post('/enviar',[EpikkaController::class,'storeEpikka']);
 
 //Insertamos un registro en Epsiweb
 Route::post('/send',[MsgController::class,'store']);
