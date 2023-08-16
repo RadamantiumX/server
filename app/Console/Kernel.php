@@ -2,17 +2,20 @@
 
 namespace App\Console;
 
+use App\Models\Analytic;
+use Carbon\Carbon;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
 class Kernel extends ConsoleKernel
 {
-    /**
-     * Define the application's command schedule.
-     */
+    //protected $commands =[Commands\TestTask::class];
+
     protected function schedule(Schedule $schedule): void
     {
-        // $schedule->command('inspire')->hourly();
+        $schedule->call(function () {
+            Analytic::where('updated_at', '<', Carbon::now()->subDays(7))->delete();
+        })->weekly();
     }
 
     /**
