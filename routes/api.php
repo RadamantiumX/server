@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AnalyticController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
@@ -31,11 +32,17 @@ Route::middleware('auth:sanctum')->group(function(){
    Route::apiResource('/msg',MsgController::class);
    //Traemos los datos de Eppika
    Route::apiResource('/epikkamsg',EpikkaController::class); 
+   Route::get('/report',[AnalyticController::class,'report']);
+   Route::get('/date',[AnalyticController::class,'getSumDate']);
+   Route::get('/url',[AnalyticController::class,'getSumSection']);
 });
 
 //Autenticacion de usuarios
 Route::post('/signup',[AuthController::class,'signup']);
 Route::post('/login',[AuthController::class,'login']);
+
+//Analiticas
+Route::post('/data',[AnalyticController::class,'trackVisit']);
 
 
 //Insertamos un registro en Eppika solo del sitio web (sin autenticacion)
